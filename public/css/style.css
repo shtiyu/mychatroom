@@ -1,10 +1,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html,body { font: 14px Helvetica, Arial; height: 100%}
-form { padding: 3px; position: fixed; bottom: 0; right:0;width: 50%; }
-input { border: 0; padding: 10px; width: 90%; margin-right: .5%; outline: none;}
-button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; outline: none;}
+form.js-form { padding: 3px; position: fixed; bottom: 0; right:0;width: 50%; }
+input#m { border: 0; padding: 10px; width: 90%; margin-right: .5%; outline: none;}
+button.js-send { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; outline: none;}
 
-form:hover{background:#f9f9f9;}
+form.js-form:hover{background:#f9f9f9;}
 
 #messages { list-style-type: none; margin: 0; padding: 0; padding-bottom: 50px}
 #messages li { padding: 5px 10px; }

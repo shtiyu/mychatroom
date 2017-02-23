@@ -3,26 +3,36 @@ let session = require('express-session');
 let flash   = require('connect-flash');
 let config  = require('config-lite');
 let router  = require('./router');
+let ioSrv   = require('./router/socketSrv');
 let pkg     = require('./package.json');
 let mongoStore = require('connect-mongo')(session);
 let formidable = require('express-formidable');
-let path = require('path');
-let app = express();
+let path   = require('path');
+let app    = express();
+let server = require('http').createServer(app);
+let io     = require('socket.io')(server);
 
-
-app.set('views', 'views');
-app.set('view engine', 'ejs');
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(session({
+let sessMiddle = session({
     key     : config.session.key,
     resave  : config.session.resave,
     secret  : config.session.secret,
     cookie  : { maxAge : 3600 * 1000},
     store   : new mongoStore({url : config.mongodb, ttl : 60 * 15}),
     saveUninitialized : config.session.saveUninitialized
-}));
+});
+
+
+app.set('views', 'views');
+app.set('view engine', 'ejs');
+
+io.use(function (socket, next) {
+    sessMiddle(socket.request, socket.request.res, next);
+});
+
+
+app.use(sessMiddle);
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(flash());
 app.use(formidable({
@@ -37,9 +47,9 @@ app.use(function(req, res, next){
 });
 
 router(app);
+ioSrv(io);
 
 
-app.listen(config.port, function () {
-    console.log(`${pkg.name} is now runing on port ${config.port}`);
+server.listen(config.port, function () {
+    console.log(`${pkg.name} is now running on port ${config.port}`);
 });
-

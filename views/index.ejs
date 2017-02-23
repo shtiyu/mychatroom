@@ -1,15 +1,10 @@
-<!doctype html>
-<html>
-<head>
-    <title>51.208.127.233(LS Preview)</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-</head>
-<body>
-<ul class="hide js-msg" id="messages"></ul>
-<form action="" class="js-form hide">
+<%-include('component/header')%>
+<script src="/js/main.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<ul class="js-msg" id="messages"></ul>
+<form action="" class="js-form">
     <input id="m" autocomplete="off" autofocus="autofocus" /><button class="js-send">execute</button>
 </form>
 
-</body>
-</html>
+<%-include('component/footer')%>
