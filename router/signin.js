@@ -7,9 +7,8 @@ let checkNoLogin = require('../middlewares/util').checkNoLogin;
 let userModel = require('../models/user');
 
 Router.get('/', checkNoLogin, function(req, res, next){
-
+    res.locals.title = '登录';
     res.render('signin');
-
 });
 
 Router.post('/', checkNoLogin, function (req, res, next) {

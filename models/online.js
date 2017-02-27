@@ -4,8 +4,8 @@
 let online = require('../lib/mongodb').Online;
 
 //用户加入聊天室
-online.enter = function (userid, name) {
-    return online.create({ userid : userid, name : name}).exec();
+online.enter = function (userid, name, socketid) {
+    return online.create({ userid : userid, name : name, socketid : socketid}).exec();
 };
 
 online.count = function(){
@@ -15,6 +15,11 @@ online.count = function(){
 //用户退出聊天室
 online.exit = function (userid) {
     return online.remove({userid : userid}).exec();
+};
+
+//在线列表
+online.list = function () {
+    return online.find({}, {name : 1}).exec();
 };
 
 module.exports = online;

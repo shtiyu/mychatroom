@@ -2,6 +2,7 @@ let express = require('express');
 let session = require('express-session');
 let flash   = require('connect-flash');
 let config  = require('config-lite');
+let favicon = require('serve-favicon');
 let router  = require('./router');
 let ioSrv   = require('./router/socketSrv');
 let pkg     = require('./package.json');
@@ -24,12 +25,13 @@ let sessMiddle = session({
 
 app.set('views', 'views');
 app.set('view engine', 'ejs');
+app.locals.title = pkg.name;
 
 io.use(function (socket, next) {
     sessMiddle(socket.request, socket.request.res, next);
 });
 
-
+app.use(favicon(path.join(__dirname, 'public', 'img', 'favicon.ico')));
 app.use(sessMiddle);
 app.use(express.static(path.join(__dirname, 'public')));
 

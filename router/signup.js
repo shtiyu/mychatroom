@@ -9,6 +9,7 @@ let modUser = require('../models/user');
 let fs = require('fs');
 
 Router.get('/', util.checkNoLogin, function(req, res, next){
+    res.locals.title = '注册';
     res.render('signup');
 });
 
