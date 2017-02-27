@@ -18,7 +18,7 @@ let sessMiddle = session({
     resave  : config.session.resave,
     secret  : config.session.secret,
     cookie  : { maxAge : 3600 * 1000},
-    store   : new mongoStore({url : config.mongodb, ttl : 60 * 15}),
+    store   : new mongoStore({url : config.mongodb, ttl : 60 * 15, stringify : false}),
     saveUninitialized : config.session.saveUninitialized
 });
 

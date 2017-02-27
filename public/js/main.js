@@ -152,7 +152,7 @@ $(function() {
             case 'cmd -s':
                 ret = switchHideMode();
                 break;
-            case 'cmd --out':
+            case 'cmd -o':
                 ret = logout();
                 break;
             case 'cmd --help':
