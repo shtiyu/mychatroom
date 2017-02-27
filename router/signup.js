@@ -69,7 +69,6 @@ Router.post('/', function (req, res, next) {
     }).catch(function(e){
         fs.unlink(avatar.path);
 
-
         if(e.message.match('E11000 duplicate key')){
             req.flash('errors', '用户名被占用');
             return res.redirect('/signup');
