@@ -17,9 +17,14 @@ online.exit = function (userid) {
     return online.remove({userid : userid}).exec();
 };
 
+online.exitBySocketID = function (socketid) {
+    return online.remove({socketid : socketid}).exec();
+};
+
 //在线列表
 online.list = function () {
     return online.find({}, {name : 1}).exec();
 };
+
 
 module.exports = online;

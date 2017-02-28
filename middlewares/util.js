@@ -39,6 +39,11 @@ let util = {
     currentTime : function(){
         let curDate = new Date();
         return curDate.getFullYear() + "-" + (curDate.getMonth() + 1) + "-" + curDate.getDate() + " " + curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
+    },
+
+    currentDate : function () {
+        let curDate = new Date();
+        return curDate.getFullYear() + "-" + (curDate.getMonth() + 1) + "-" + curDate.getDate();
     }
 
 };

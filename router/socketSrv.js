@@ -4,6 +4,7 @@
 let onlineModel  = require('../models/online');
 let sessionModel = require('../models/sessions');
 let currentTime  = require('../middlewares/util').currentTime;
+let debug = require('../lib/debug');
 
 module.exports = function (io) {
 
@@ -27,7 +28,7 @@ module.exports = function (io) {
                 return io.sockets.emit('user join', {userNum: result, nickname : nickname});
             });
         }).catch(function (e) {
-            console.log(e.message);
+            debug.log(e.message);
         });
 
         //离开房间
@@ -37,7 +38,7 @@ module.exports = function (io) {
                     return socket.broadcast.emit('user leave', {userNum : result, nickname : nickname})
                 });
             }).catch(function (e) {
-                console.log(e.message);
+                debug.log(e.message);
             })
         });
 
@@ -54,8 +55,13 @@ module.exports = function (io) {
             sessionModel.checkOnline(sessionID).then(function(result){
                 //已被挤下线，发送消息通知用户下线
                 if(!result || !result.session.user){
-                    socket.emit('chat message', { nickname : "System message", message : "您已处于离线状态，请刷新页面重新登录", time : time});
-                    socket.disconnect();
+                    onlineModel.exitBySocketID(socketid).then(function(){
+                        socket.emit('chat message', { nickname : "System message", message : "您已处于离线状态，请刷新页面重新登录", time : time});
+                        socket.disconnect();
+                    }).catch(function (e) {
+                        debug.log(e.message);
+                    })
+
                 }else{
                     socket.broadcast.emit('chat message', {nickname: nickname, message : msg, time : time});
                 }
@@ -70,7 +76,7 @@ module.exports = function (io) {
             onlineModel.list().then(function (result) {
                 callback(result);
             }).catch(function(e){
-                console.log(e.message);
+                debug.log(e.message);
             });
 
         });

@@ -8,12 +8,15 @@ let ioSrv   = require('./router/socketSrv');
 let pkg     = require('./package.json');
 let mongoStore = require('connect-mongo')(session);
 let formidable = require('express-formidable');
+let path       = require('path');
+let app        = express();
+let util       = require('./middlewares/util');
+let server     = require('http').createServer(app);
+let io         = require('socket.io')(server);
 let winston    = require('winston');
 let expressWinston = require('express-winston');
-let path   = require('path');
-let app    = express();
-let server = require('http').createServer(app);
-let io     = require('socket.io')(server);
+
+global.DIR_ROOT = __dirname; //定义DIR_ROOT
 
 let sessMiddle = session({
     key     : config.session.key,
@@ -52,28 +55,19 @@ app.use(function(req, res, next){
 
 app.use(expressWinston.logger({
     transports : [
-        new (winston.transports.Console)({
-            json : true,
-            colorize : true
-        }),
         new winston.transports.File({
-            filename : 'logs/success.log'
+            filename : 'logs/success_'+util.currentDate()+'.log'
         })
     ]
 }));
-
 
 router(app);
 ioSrv(io);
 
 app.use(expressWinston.logger({
     transports: [
-        new winston.transports.Console({
-            json: true,
-            colorize: true
-        }),
         new winston.transports.File({
-            filename : 'logs/error.log'
+            filename : 'logs/error'+util.currentDate()+'.log'
         })
     ]
 
