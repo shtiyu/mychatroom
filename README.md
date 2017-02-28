@@ -1,5 +1,5 @@
 # mychatroom
-NodeJS + Mongodb + Sockect.io 聊天室，实现如下功能:<br>
+Node.js + MongoDB + Sockect.io 聊天室，实现如下功能:<br>
 * 注册
 * 登录（多处登录会互踢）
 * 聊天
