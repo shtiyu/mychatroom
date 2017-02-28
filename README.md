@@ -16,3 +16,10 @@ NodeJS + Mongodb + Sockect.io 聊天室，实现如下功能:<br>
 
 ## 预览
 * http://localhost:3002
+
+## 用到的技术/框架
+* [Nodejs](https://nodejs.org/en/)
+* [Express](http://expressjs.com/)
+* [EJS](http://www.embeddedjs.com/)
+* [Mongodb](https://docs.mongodb.com/manual/reference/)
+* [Socket.io](http://socket.io)
