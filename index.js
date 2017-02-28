@@ -51,6 +51,12 @@ app.use(function(req, res, next){
 router(app);
 ioSrv(io);
 
+app.use(function(err, req, res, next){
+    res.render('error', {
+        error : err
+    });
+});
+
 
 server.listen(config.port, function () {
     console.log(`${pkg.name} is now running on port ${config.port}`);
