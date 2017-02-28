@@ -1,5 +1,5 @@
 # mychatroom
-NodeJS + Mongodb + Sockect.io 聊天室，实现如下功能:<br>
+Node.js + MongoDB + Sockect.io 聊天室，实现如下功能:<br>
 * 注册
 * 登录（多处登录会互踢）
 * 聊天
@@ -11,7 +11,15 @@ NodeJS + Mongodb + Sockect.io 聊天室，实现如下功能:<br>
 * npm install
 
 ## 启动
+* 启动Mongodb，默认端口27017(配置位于：config/default.js)
 * node index.js
 
 ## 预览
 * http://localhost:3002
+
+## 用到的技术/框架
+* [Node.js](https://nodejs.org/en/)
+* [Express](http://expressjs.com/)
+* [EJS](http://www.embeddedjs.com/)
+* [MongoDB](https://docs.mongodb.com/manual/reference/)
+* [Socket.io](http://socket.io)
