@@ -16,9 +16,11 @@
     "express": "^4.14.1",
     "express-formidable": "^1.0.0",
     "express-session": "^1.15.1",
+    "express-winston": "^2.2.0",
     "mongolass": "^2.4.2",
     "serve-favicon": "^2.4.0",
     "sha1": "^1.1.1",
-    "socket.io": "^1.7.3"
+    "socket.io": "^1.7.3",
+    "winston": "^2.3.1"
   }
 }

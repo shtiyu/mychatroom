@@ -8,6 +8,8 @@ let ioSrv   = require('./router/socketSrv');
 let pkg     = require('./package.json');
 let mongoStore = require('connect-mongo')(session);
 let formidable = require('express-formidable');
+let winston    = require('winston');
+let expressWinston = require('express-winston');
 let path   = require('path');
 let app    = express();
 let server = require('http').createServer(app);
@@ -48,8 +50,34 @@ app.use(function(req, res, next){
     next();
 });
 
+app.use(expressWinston.logger({
+    transports : [
+        new (winston.transports.Console)({
+            json : true,
+            colorize : true
+        }),
+        new winston.transports.File({
+            filename : 'logs/success.log'
+        })
+    ]
+}));
+
+
 router(app);
 ioSrv(io);
+
+app.use(expressWinston.logger({
+    transports: [
+        new winston.transports.Console({
+            json: true,
+            colorize: true
+        }),
+        new winston.transports.File({
+            filename : 'logs/error.log'
+        })
+    ]
+
+}));
 
 app.use(function(err, req, res, next){
     res.render('error', {
