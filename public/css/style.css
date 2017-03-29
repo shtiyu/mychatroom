@@ -2,7 +2,7 @@
 html,body { font: 14px Helvetica, Arial; height: 100%}
 form.js-form { padding: 3px; position: fixed; bottom: 0; right:0;width: 50%; }
 input#m { border: 0; padding: 10px; width: 90%; margin-right: .5%; outline: none;}
-button.js-send { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; outline: none;}
+button.js-send { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; outline: none;text-overflow: ellipsis;overflow: hidden}
 
 form.js-form:hover{background:#f9f9f9;}
 
