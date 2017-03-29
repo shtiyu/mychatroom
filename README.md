@@ -20,4 +20,4 @@ Node.js + MongoDB + Sockect.io 聊天室，实现如下功能:<br>
 ## 预览
 * http://localhost:3002
 ## 运行截图
-![run](https://raw.githubusercontent.com/shtiyu/mychatroom/master/public/img/demo.png)
+![run](https://raw.githubusercontent.com/shtiyu/mychatroom/master/public/img/demo.jpg)
